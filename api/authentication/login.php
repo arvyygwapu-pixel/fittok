@@ -1,6 +1,6 @@
 <?php
 
-include "helpers.php";
+include "../helpers.php";
 
 header('Content-Type: application/json');
 
