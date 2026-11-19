@@ -1,1 +1,4 @@
 ./aiven-credentials.txt
+.env
+.env.*
+!.env.example
