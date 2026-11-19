@@ -1,11 +1,13 @@
-
 FROM php:8.2-apache
+
+# Use production PHP settings (hides HTML warnings from breaking JSON responses)
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Install MySQL PDO extension
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Enable Apache rewrite
-RUN a2enmod rewrite
+# Enable Apache rewrite and silence ServerName log noise
+RUN a2enmod rewrite && echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Copy project files
 COPY . /var/www/html/
